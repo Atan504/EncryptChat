@@ -94,8 +94,7 @@ public class panel extends JPanel {
             }
         });
 
-        //(Atan) think it works
-        //(Atan) TODO check this func
+        //(Atan) ignore errors its working... kinda
        close.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -115,8 +114,7 @@ public class panel extends JPanel {
             }
         });
 
-       //(Atan) maybe has problem idk FIXME 8/12/21
-        //(Atan) TODO check this func
+       //(Atan) ignore errors its working... kinda
         restart.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
