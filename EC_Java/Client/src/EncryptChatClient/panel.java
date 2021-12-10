@@ -98,35 +98,31 @@ public class panel extends JPanel {
         sendBTN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (MyMSGSTR != null || MyMSGSTR != " ") {
 
-                    IP_PortSTR = IPTextField.getText();
-                    System.out.println(IP_PortSTR);
-                    MyMSGSTR = MSGBox.getText();
-                    ConText(names = "you", MyMSGSTR);
+                IP_PortSTR = IPTextField.getText();
+                System.out.println(IP_PortSTR);
+                MyMSGSTR = MSGBox.getText();
+                ConText(names = "you", MyMSGSTR);
 
-                    MSGBox.setText("");
-                    IPTextField.setText(IPTextField.getText());
+                MSGBox.setText("");
+                IPTextField.setText(IPTextField.getText());
 
-                    //IP + PORT separate
+                //IP + PORT separate
 
-                    String[] arr = IP_PortSTR.split(":");
-                    IPSTR = arr[0];
-                    PortSTR = arr[1];
-                    PortInt = Integer.parseInt(arr[1]);
-                    System.out.println(IPSTR);
-                    System.out.println(PortInt);
-
+                String[] arr = IP_PortSTR.split(":");
+                IPSTR = arr[0];
+                PortSTR = arr[1];
+                PortInt = Integer.parseInt(arr[1]);
+                System.out.println(IPSTR);
+                System.out.println(PortInt);
                     //send func
-                    GreetClient client = new GreetClient();
-                    try {
-                        client.startConnection(IPSTR, PortInt);
-                        client.sendMessage("2" + MyMSGSTR);
-                    } catch (IOException ioException) {
-                        System.out.println(ioException.getMessage());
-                    }
-                }else{
-                    System.out.println("msg = null");
+                GreetClient client = new GreetClient();
+                try {
+                    client.startConnection(IPSTR, PortInt);
+                    client.sendMessage("2" + Encryption.EncryptL3(1,2,3,4,5,MyMSGSTR));
+                    System.out.println(Encryption.EncryptL3(1,2,3,4,5,MyMSGSTR));
+                } catch (IOException ioException) {
+                    System.out.println(ioException.getMessage());
                 }
             }
         });
