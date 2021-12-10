@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <style>
+                body {background-color: #292929;}
+                footer {background-color: #1f1f1f;}
+                center {color: #65E63E;}
+                p {color: #08E600;}
+                nv {color: #26B000;}
+                EC {color: blue;}
+                CE {color: yellow;}
+                footer {color: #32CD32;}
+
+        </style>
+
+        <title>Encrypt Chat</title>
+
+    </head>
+
+    <nav>
+        <EC style="font-size:200%;">Encrypt</EC> <CE style="font-size:200%;">Chat</CE> <hr> <nv style="font-size:200%;"><b> Download: </b></nv> <nv style="font-size:150%;"><b> EncryptChat is still in development. </b></nv>
+    </nav>
+
+    <body>
+
+        <br>
+        <br>
+        <br>
+        <center style="font-size:300%;">Wellcome to EncryptChat</center>
+        <br>
+        <br>
+        <br>
+
+        <center> <img src="logo.png" alt="EncryptChat logo" style="width:150px;height:200px;"> </center>
+
+        <br>
+        <br>
+        <center style="font-size:150%;">What is EncryptChat?</center>
+
+        <br>
+
+        <center><p style="font-size:100%;">---</p></center>
+
+        <br>
+        <br>
+
+        <center style="font-size:150%;">Release</center>
+        <br>
+
+        <center><p style="font-size:100%;">---</p></center>
+
+        <br>
+        <br>
+
+        <center style="font-size:150%;">What's new</center>
+        <br>
+
+        <center><p style="font-size:100%;">---</p></center>
+        <br>
+        <br>
+
+        <p style="font-size:175%;">Explore:</p> <p style="font-size:150%;">About us</p> <p style="font-size:150%;">Suggestions</p> <p style="font-size:150%;">Social media</p> <p style="font-size:150%;">Update Logs</p>
+
+        <center><footer style="font-size:100%;">Help center</footer></center>
+        <center><footer style="font-size:100%;">Twitter</footer></center>
+        <center><footer style="font-size:100%;">YouTube</footer></center>
+        <center><footer style="font-size:100%;">FaceBook</footer></center>
+        <center><footer style="font-size:100%;">Instagram</footer></center>
+        <center><footer style="font-size:100%;">WebSite</footer></center>
+    </body>
+</html>
