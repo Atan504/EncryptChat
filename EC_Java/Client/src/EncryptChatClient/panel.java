@@ -121,7 +121,7 @@ public class panel extends JPanel {
                     GreetClient client = new GreetClient();
                     try {
                         client.startConnection(IPSTR, PortInt);
-                        client.sendMessage("2" + MyMSGSTR);
+                        System.out.println(client.sendMessage("2" + MyMSGSTR));
                     } catch (IOException ioException) {
                         System.out.println(ioException.getMessage());
                     }

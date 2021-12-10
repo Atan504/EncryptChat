@@ -11,80 +11,86 @@ public class GreetServer {
         static char x;
         static int m;
         static String text = "";
+        private static boolean runing;
         private static ServerSocket serverSocket;
         private static Socket clientSocket;
         private static PrintWriter out;
         private static BufferedReader in;
         public static void start(int port) throws IOException {
+                runing= true;
                 serverSocket = new ServerSocket(port);
-                while (true) {
+                while (runing) {
                         //socket
                         // (Atan) FIXME: 12/8/2021 kinda shit ngl
                         clientSocket = serverSocket.accept();
                         out = new PrintWriter(clientSocket.getOutputStream(), true);
                         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                         String greeting = in.readLine();
-                        //packet recognition
-                        if (greeting.charAt(0) == '1') {
-                                out.println("recognised packet");
-                                panel.sendCON(greeting.substring(1));
-                        } else if (greeting.charAt(0) == '2') {
-                                // (Atan) no problem here. yes sir.
-                                //dns.... don't even bother
-                                new Thread() {
-                                        public void run() {
-                                FileWriter fw = null;
-                                try {
-                                out.println("recognised packet");
-                                panel.sendCON("Trying connection from: "+ clientSocket.getInetAddress().toString().substring(1) + " --- " + greeting.substring(1));
-                                fw = new FileWriter("ipTXBO.txt", true);
-                                File file = new File("ipTXBO.txt");
-                                FileReader fr = new FileReader(file);
-                                PrintWriter pw = new PrintWriter (fw);
-                                LineNumberReader lnr = new LineNumberReader(fr);
-                                BufferedWriter bw = new BufferedWriter(fw);
+                        if(runing) {
+                                //packet recognition
+                                if (greeting.charAt(0) == '1') {
+                                        out.println("recognised packet");
+                                        panel.sendCON(greeting.substring(1));
+                                } else if (greeting.charAt(0) == '2') {
+                                        // (Atan) no problem here. yes sir.
+                                        //dns.... don't even bother
+                                        new Thread() {
+                                                public void run() {
+                                                        FileWriter fw = null;
+                                                        try {
+                                                                out.println("recognised packet");
+                                                                panel.sendCON("Trying connection from: " + clientSocket.getInetAddress().toString().substring(1) + " --- " + greeting.substring(1));
+                                                                fw = new FileWriter("ipTXBO.txt", true);
+                                                                File file = new File("ipTXBO.txt");
+                                                                FileReader fr = new FileReader(file);
+                                                                PrintWriter pw = new PrintWriter(fw);
+                                                                LineNumberReader lnr = new LineNumberReader(fr);
+                                                                BufferedWriter bw = new BufferedWriter(fw);
 
-                                int line;
-                                String st;
-                                if((st = lnr.readLine()) == null){
-                                        pw.write(clientSocket.getInetAddress().toString().substring(1) + "\r\n" + "=" + "\r\n" + greeting.substring(1)+ "\r\n" + "--------------------------\r\n");
-                                }else {
-                                        boolean done = false;
-                                        while ((st = lnr.readLine()) != null) {
-                                                System.out.println(st);
+                                                                int line;
+                                                                String st;
+                                                                if ((st = lnr.readLine()) == null) {
+                                                                        pw.write(clientSocket.getInetAddress().toString().substring(1) + "\r\n" + "=" + "\r\n" + greeting.substring(1) + "\r\n" + "--------------------------\r\n");
+                                                                } else {
+                                                                        boolean done = false;
+                                                                        while ((st = lnr.readLine()) != null) {
+                                                                                System.out.println(st);
 
-                                                if (st.equals(greeting.substring(1))) {
-                                                        line = lnr.getLineNumber() - 3;
-                                                        Path path = Paths.get(file.getPath());
-                                                        List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-                                                        lines.set(line, clientSocket.getInetAddress().toString().substring(1));
-                                                        Files.write(path, lines, StandardCharsets.UTF_8);
-                                                        done = true;
+                                                                                if (st.equals(greeting.substring(1))) {
+                                                                                        line = lnr.getLineNumber() - 3;
+                                                                                        Path path = Paths.get(file.getPath());
+                                                                                        List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+                                                                                        lines.set(line, clientSocket.getInetAddress().toString().substring(1));
+                                                                                        Files.write(path, lines, StandardCharsets.UTF_8);
+                                                                                        done = true;
 
+                                                                                }
+                                                                        }
+
+                                                                        if (!done) {
+                                                                                pw.write(clientSocket.getInetAddress().toString().substring(1) + "\r\n" + "=" + "\r\n" + greeting.substring(1) + "\r\n" + "--------------------------\r\n");
+
+                                                                        }
+                                                                }
+
+                                                                pw.close();
+                                                                fw.close();
+                                                        } catch (IOException e) {
+                                                                e.printStackTrace();
+                                                        }
                                                 }
-                                        }
-
-                                        if(!done){
-                                                pw.write(clientSocket.getInetAddress().toString().substring(1) + "\r\n" + "=" + "\r\n" + greeting.substring(1) + "\r\n" + "--------------------------\r\n");
-
-                                        }
+                                        }.start();
+                                } else {
+                                        out.println("unrecognised packet");
                                 }
-
-                                pw.close();
-                                fw.close();
-                                } catch (IOException e) {
-                                        e.printStackTrace();
-                                }
-                                        }
-                                }.start();
-                        } else{
-                                out.println("unrecognised packet");
-                        }
+                        }else {out.println("Server is closing/closed \r\n Try sending messages later");}
 
                 }
+
         }
 
         public static void stop() throws IOException { // gues what this does <---
+                runing=false;
                 clientSocket = serverSocket.accept();
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 in.close();
@@ -99,7 +105,7 @@ public class GreetServer {
                         between networkes
                         maybe recode all code
                         check all funcs
-                        make client goof lol
+                        make client goog lol
                         comment on un commented stuff
                         better gui
                         implement encrption
