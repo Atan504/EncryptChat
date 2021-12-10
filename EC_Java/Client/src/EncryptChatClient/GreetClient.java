@@ -11,8 +11,9 @@ public class GreetClient {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
-
+    //
 	//startConnection
+    //FIXME need to work on TCP
     public void startConnection(String ip, int port) throws IOException {
         clientSocket = new Socket(ip, port);
         out = new PrintWriter(clientSocket.getOutputStream(), true);
