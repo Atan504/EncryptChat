@@ -119,8 +119,8 @@ public class panel extends JPanel {
                 GreetClient client = new GreetClient();
                 try {
                     client.startConnection(IPSTR, PortInt);
-                    client.sendMessage("2" + Encryption.EncryptL3(1,2,3,4,5,MyMSGSTR));
-                    System.out.println(Encryption.EncryptL3(1,2,3,4,5,MyMSGSTR));
+                    client.sendMessage("2" + MasterEncryption.MasterEncryption(1,2,3,4,5,MyMSGSTR));
+                    System.out.println("Sent this String"+MasterEncryption.MasterEncryption(1,2,3,4,5,MyMSGSTR));
                 } catch (IOException ioException) {
                     System.out.println(ioException.getMessage());
                 }
