@@ -25,8 +25,7 @@ public class DeEncryption {
         for (int i = 0; i < text.length(); i++) {
 
             x = text.charAt(i);
-            x = (char) (x+(-1*(e1*e2*e3*e4*e5*69420))
-            );
+            x = (char) (x+(-1*(Math.pow(69,420)*(int)'c'+136+(169*Math.pow(e1,e2*e3+e4)+e5))));
 
             re = re + x;
         }
