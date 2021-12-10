@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Client/Client.iml" filepath="$PROJECT_DIR$/Client/Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/EC_Java.iml" filepath="$PROJECT_DIR$/.idea/EC_Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Other shit/EncryptChat/EncryptChat1.2.0/EncryptChat1.2.0.iml" filepath="$PROJECT_DIR$/Other shit/EncryptChat/EncryptChat1.2.0/EncryptChat1.2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Other shit/api/api.iml" filepath="$PROJECT_DIR$/Other shit/api/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Other shit/EncryptChat/EncryptChat TCP/client/client.iml" filepath="$PROJECT_DIR$/Other shit/EncryptChat/EncryptChat TCP/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Other shit/EncryptChat/EncryptChat TCP/server/server.iml" filepath="$PROJECT_DIR$/Other shit/EncryptChat/EncryptChat TCP/server/server.iml" />
+    </modules>
+  </component>
+</project>
