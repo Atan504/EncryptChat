@@ -10,14 +10,15 @@ public class MasterEncryption {
             x = text.charAt(i);
             c = String.valueOf(x);
 
-            if(i%3 == 0){
-                x =  Encryption.EncryptL1(e1,e2,e3,e4,e5,c).charAt(0);
-
-            }else if(i%3 == 1){
+            if(i%4 == 0){
                 x =  Encryption.EncryptL2(e1,e2,e3,e4,e5,c).charAt(0);
-            }else{
-                x =  Encryption.EncryptL3(e1,e2,e3,e4,e5,c).charAt(0);
 
+            }else if(i%4 == 1){
+                x =  Encryption.EncryptL3(e1,e2,e3,e4,e5,c).charAt(0);
+            }else if(i%4 == 2){
+                x = Encryption.EncryptL4(e1,e2,e3,e4,e5,c).charAt(0);
+            } else{
+                x =  Encryption.EncryptL1(e1,e2,e3,e4,e5,c).charAt(0);
             }
 
 

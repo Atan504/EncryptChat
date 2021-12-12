@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class panel extends JPanel {
+
     //public variables
     public static String AllText;
     public static String MyMSGSTR = "";
@@ -94,6 +95,7 @@ public class panel extends JPanel {
 
 
 
+
         //Action listeners
         sendBTN.addActionListener(new ActionListener() {
             @Override
@@ -136,6 +138,7 @@ public class panel extends JPanel {
         AllText = AllText + "\r\n" + names + ": " +MSG;
         Textarea.setText(AllText);
     }
+
 
 
 

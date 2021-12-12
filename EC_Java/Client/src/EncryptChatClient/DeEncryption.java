@@ -47,6 +47,19 @@ public class DeEncryption {
 
         return re;
     }
+    public static String DeEncryptL4(/*Token*/int e1,int e2,int e3,int e4,int e5, String text){
+        char x;
+        String re = "";
+
+        for (int i = 0; i < text.length(); i++) {
+
+            x = text.charAt(i);
+            x = (char) (x+(-1*(e1*e2+0.03*Math.pow(e5,e4)+e3*0.69-1)));
+
+            re = re + x;
+        }
+        return re;
+    }
 
 
 
