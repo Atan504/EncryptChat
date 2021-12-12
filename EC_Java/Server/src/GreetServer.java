@@ -7,6 +7,15 @@ import java.nio.charset.StandardCharsets;
 
 
 public class GreetServer {
+
+        //Fixme
+        // - TCP between networks
+        // - multi socket
+        // - better DNS
+        // - Save user system (better)
+
+
+
         //variables
         static char x;
         static int m;
