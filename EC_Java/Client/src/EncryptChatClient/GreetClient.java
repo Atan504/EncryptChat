@@ -18,7 +18,7 @@ public class GreetClient {
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
-	
+
 	//sendMessage
     public String sendMessage(String msg) throws IOException {
         out.println(msg);

@@ -4,9 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.Set;
 
-public class panel extends JPanel {
+public class panelChat extends JPanel {
 
     //public variables
     public static String AllText;
@@ -27,10 +32,11 @@ public class panel extends JPanel {
     public static JTextArea Textarea = new JTextArea();
 
     //send objects
+    JButton Settings = new JButton("S");
     JButton sendBTN = new JButton("Send ->");
     JTextField MSGBox = new JTextField();
     public static String MSG = "";
-    public panel() {
+    public panelChat() {
         //Object
         //colors for objects
         //fonts
@@ -43,6 +49,9 @@ public class panel extends JPanel {
             sendBTN.setBackground(new Color(31, 31, 31, 255));
             IPTextField.setBackground(new Color(31, 31, 31, 255));
             MSGBox.setForeground(new Color(34, 255, 0, 255));
+            Settings.setForeground(new Color(34, 255, 0, 255));
+            Settings.setBackground(new Color(31, 31, 31, 255));
+
             sendBTN.setForeground(new Color(34, 255, 0, 255));
             IPTextField.setForeground(new Color(34, 255, 0, 255));
             this.setBackground(new Color(31, 31, 31, 255));
@@ -71,10 +80,15 @@ public class panel extends JPanel {
         //Add objects
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridwidth = 1;
-        c.gridx = 0;
+        c.gridx = 1;
         c.gridy = 0;
         c.weightx = 2;
         this.add(IPTextField, c);
+        c.gridwidth = 1;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 0;
+        this.add(Settings, c);
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridwidth = 0;
         c.ipady = 450;
@@ -97,15 +111,23 @@ public class panel extends JPanel {
 
 
         //Action listeners
+
+        Settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.panelChangerMethod(1);
+
+            }
+        });
+
+
+
         sendBTN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 IP_PortSTR = IPTextField.getText();
-                System.out.println(IP_PortSTR);
                 MyMSGSTR = MSGBox.getText();
-                ConText(names = "you", MyMSGSTR);
-
                 MSGBox.setText("");
                 IPTextField.setText(IPTextField.getText());
 
@@ -115,21 +137,43 @@ public class panel extends JPanel {
                 IPSTR = arr[0];
                 PortSTR = arr[1];
                 PortInt = Integer.parseInt(arr[1]);
-                System.out.println(IPSTR);
-                System.out.println(PortInt);
-                    //send func
-                GreetClient client = new GreetClient();
+
+                //send func
                 try {
-                    client.startConnection(IPSTR, PortInt);
-                    client.sendMessage("2" + MasterEncryption.MasterEncryption(1,2,3,4,5,MyMSGSTR));
-                    System.out.println("Sent this String"+MasterEncryption.MasterEncryption(1,2,3,4,5,MyMSGSTR));
-                } catch (IOException ioException) {
+                    if(isTextNotNull(MyMSGSTR) && isTextNotNull(IPSTR)){
+                        System.out.println(IPSTR);
+                        System.out.println(PortInt);
+                        ConText(names = "you",MyMSGSTR);
+                        startConnection(IPSTR, PortInt);
+                        sendMessage("1" + "shooshoo: " + MyMSGSTR);
+                        System.out.println("Sent this String"+Encryption.MasterEncryption(1,2,3,4,5,MyMSGSTR));
+                        }
+                    } catch (IOException ioException) {
                     System.out.println(ioException.getMessage());
                 }
             }
         });
         this.repaint();
     }
+    //socket
+    private Socket clientSocket;
+    private PrintWriter out;
+    private BufferedReader in;
+    //TCP SHIT
+    //startConnection
+    public void startConnection(String ip, int port) throws IOException {
+        clientSocket = new Socket(ip, port);
+        out = new PrintWriter(clientSocket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+    }
+
+    //sendMessage
+    public String sendMessage(String msg) throws IOException {
+        out.println(msg);
+        String resp = in.readLine();
+        return resp;
+    }
+
 
     //Console text:
     public static void ConText(String names, String MSG) {
@@ -139,6 +183,27 @@ public class panel extends JPanel {
         Textarea.setText(AllText);
     }
 
+    public static boolean isTextNotNull (String s){
+        boolean longSpace = true;
+        if(s.equals(null)){
+            return false;
+        }
+        if(s.equals("")){
+            return false;
+        }
+        if(s.equals(" ")){
+            return false;
+        }
+        for (int i = 0; i < s.length() && longSpace ; i++) {
+            if(s.charAt(i) != ' '){
+                longSpace = false;
+            }
+        }
+        if(longSpace == true){
+            return false;
+        }
+        return true;
+    }
 
 
 
