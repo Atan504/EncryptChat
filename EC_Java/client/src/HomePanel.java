@@ -2,9 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class HomePanel extends JPanel{
-    //public panel objects
     public static JButton settingBTN = new JButton("Setting");
+    public static JButton send = new JButton("Send");
+    public static JTextField input = new JTextField();
+
     public HomePanel () {
+
+        //objects
+
+
         //general settings
         this.setBackground(new Color(53, 50, 49));
         //grid layout
@@ -36,16 +42,40 @@ public class HomePanel extends JPanel{
         c.gridy = 1;
         this.add(a, c);
 
-        JButton g = new JButton("5");
+
+        //input text field
+        input.setBackground(new Color(54,53,55));
+        input.setForeground(new Color(237,233,239));
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 0;       //reset to default
+        c.ipady = 10;       //reset to default
+        c.weighty = 1.0;   //request any extra vertical space
+        c.anchor = GridBagConstraints.PAGE_END; //bottom of space
+        c.gridx = 1;       //aligned with button 2
+        c.gridwidth = 1;   //2 columns wide
+        c.gridy = 2;       //third row
+        this.add(input, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 5;      //reset to default
         c.weighty = 1.0;   //request any extra vertical space
         c.anchor = GridBagConstraints.PAGE_END; //bottom of space
         c.insets = new Insets(10,0,0,0);  //top padding
-        c.gridx = 1;       //aligned with button 2
-        c.gridwidth = 2;   //2 columns wide
+        c.gridx = 2;       //aligned with button 2
+        c.gridwidth = 1;   //2 columns wide
         c.gridy = 2;       //third row
-        this.add(g, c);
+        this.add(send, c);
+
+
+
+
+
+
+        //Listeners
+
 
     }
+
+
+
+
 }

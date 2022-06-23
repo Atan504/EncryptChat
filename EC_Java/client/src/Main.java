@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -10,44 +8,39 @@ public class Main {
     public static void main(String[] args) {
 
 
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-        Date date = new Date(System.currentTimeMillis());
-        Message m = new Message("Me",formatter.format(date),"hello","abc");
-        System.out.println(m.toString());
-        m.fromString("someone|2022-06-09 at 16:05:04 EET|inaminasinamina|456");
-        System.out.println(m.toString());
-
-
         /*TODO
         *  - GUI
         *  - TCP - Get packets, Send Packets
         *  - Encryption & DeEncryption methods   */
 
+        String a = "sus";
+        String b = Encryption.encrypt(a,"melah","12345");
 
-        //UI
-        //panels
-        HomePanel homepanel = new HomePanel();
-        ChatPanel chatpanel = new ChatPanel();
-        panels[0] = homepanel;
-        panels[1] = chatpanel;
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(Encryption.decrypt(b,"melah","Ea"));
 
-        //frame set
-        frame.add(panels[0]);
-        frame.setBounds(600,400,600,400);
-        frame.setVisible(true);
-        frame.setResizable(false);
-        frame.setTitle("EncryptChat 1.2.1");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.repaint();
 
-        while(sc.nextInt() != 2){
-            if(sc.nextInt() == 1){
-                switchPanels(1);
-            } else if (sc.nextInt() == 0) {
-                switchPanels(0);
-            }
-        }
+
+
+
+//        //UI
+//        //panels
+//        HomePanel homepanel = new HomePanel();
+//        ChatPanel chatpanel = new ChatPanel();
+//        panels[0] = homepanel;
+//        panels[1] = chatpanel;
+//
+//        //frame set
+//        frame.add(panels[0]);
+//        frame.setBounds(600,400,600,400);
+//        frame.setVisible(true);
+//        frame.setResizable(false);
+//        frame.setTitle("EncryptChat 1.2.1");
+//        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        frame.setLocationRelativeTo(null);
+//        frame.repaint();
+//
 
 
     }
